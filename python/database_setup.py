@@ -38,11 +38,8 @@ class Citation(Base):
     defendant_state = Column(String(2))
     drivers_license_number = Column(String(15))
     court_date = Column(DateTime)
-
-
-
-
-
+    court_location = Column(String(40))
+    court_address = Column(String(90))
 
 ##end
 engine = create_engine('mysql://steveballmer:developers@crimelab.mocrime.thomasruble.com:3306/mocrime')
