@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <h1>All the criminals</h1>
+	<a href="/index/">Back</a><br>
+	<br>
+	<hr>
+	{% for i in citations %}
+		<br>
+		<b>{{i.citation_number}} </b>
+		<br>
+		{{str(i.first_name)}} {{str(i.last_name)}} 
+		<br>
+		{{str(i.drivers_license_number)}}
+		
+		<br>
+	{% endfor %}
+	
+  </body>
+</html>

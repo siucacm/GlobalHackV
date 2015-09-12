@@ -1,12 +1,14 @@
 import sys, os
 
-from database_setup import Base, Ticket, Criminal
+from database_setup import Base, Criminal, Citation
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import cgi
 from urlparse import urlparse
 from flask import Flask
 from flask import request, render_template, redirect, url_for
+import twilio.twiml
+from twilio.rest import TwilioRestClient
 
 INTERP = os.path.expanduser("/home/thorub2/MOcrime.thomasruble.com/env/bin/python")
 if sys.executable != INTERP: os.execl(INTERP, INTERP, *sys.argv)
@@ -28,13 +30,7 @@ def utility_processor():
 @application.route('/index/')
 def index():
     criminals = session.query(Criminal).all()
-    output = "<h3>The Hype Train is full steam ahead</h3><br>"
-    for c in criminals:
-      output += str(c.id) + " " + c.name + "<br>"
-      output += "<b>CRIME:</b><em> " + c.infraction + "</em>"
-      output += "<br><br>"
-    output += "<a href=/newcriminal/>New criminal</a>"
-    return output
+    return render_template('index.html', criminals=criminals)
 
 @application.route('/newcriminal/', methods=['GET', 'POST'])
 def newCriminal():
@@ -48,5 +44,23 @@ def newCriminal():
         return redirect(url_for('index'))
     else:
         return render_template('newCriminal.html')
+
+@application.route('/data/', methods=['GET', 'POST'])
+def displayData():
+    if request.method == 'GET':
+        citations = session.query(Citation).all()
+        return render_template('displaydata.html', citations=citations)
+
+@application.route('/text/', methods=['POST'])
+def send_sms():
+    if request.method == 'POST':
+        msg = request.form['message']
+        #resp = twilio.twiml.Response()
+        #resp.message("Hey baby")
+        account_sid = "AC7baad23321d71c42448deb02c3cb31ae"
+        auth_token = "4c35e0337dc3963f457d477c8a59996f"
+        client = TwilioRestClient(account_sid, auth_token)
+        client.messages.create(to="+17023284071", from_="+13342474764", body=msg)
+        return redirect(url_for('index'))
 
 

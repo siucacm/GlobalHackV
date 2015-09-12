@@ -1,0 +1,22 @@
+<html>
+<body>
+
+<h1>A crime has been committed!</h1>
+<h2>New Criminal:</h2>
+
+<form action="{{ url_for('newCriminal') }}" method='POST'>
+	
+	<p>Name:</p>
+	  <input type='text' size='30' name='name'> 
+	<br>
+	<h2> What was the crime? </h2>
+	   <input type='text' size='30' name='infraction'>
+
+	<input type='submit' value='Create'>
+</form>
+
+<br>
+	<a href='{{ url_for("index")}}'>Cancel</a>
+
+</body>
+</html>

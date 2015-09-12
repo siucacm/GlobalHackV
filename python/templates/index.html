@@ -1,0 +1,26 @@
+<html>
+  <body>
+    <h1>MO Crime</h1>
+	<br>
+	<em>Check out <a href='/data/'> these losers</a></em><br><br>
+	<br>
+	<hr>
+	<form action="{{ url_for('send_sms') }}" method='POST'>
+	
+	<p>Send Andy a text:</p>
+	  <input type='text' size='30' name='message'> 
+	<br>
+	<input type='submit' value='Text it!'>
+</form>
+	<hr>
+	{% for i in criminals %}
+		<br>
+		{{i.name}}
+		<br>
+		<b>CRIME: </b><em>{{i.infraction}}</em>
+		<br>
+		<br>
+	{% endfor %}
+	
+  </body>
+</html>
