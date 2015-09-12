@@ -23,6 +23,20 @@ class Criminal(Base):
     id = Column(Integer, primary_key=True)
     infraction = Column(String(90))
 
+class Violation(Base):
+
+    __tablename__ = 'violation'
+    id = Column(Integer, primary_key=True)
+    citation_number = Column(Integer, ForeignKey('citation.citation_number'), nullable=False)
+    violation_number = Column(String(25))
+    violation_description = Column(String(80))
+    warrant_status = Column(String(10))
+    warrant_number = Column(String(20))
+    status = Column(String(50))
+    status_date = Column(String(15))
+    fine_amount = Column(String(15))
+    court_cost = Column(String(15))
+
 class Citation(Base):
 
     __tablename__ = 'citation'

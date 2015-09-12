@@ -10,6 +10,20 @@ from sqlalchemy.orm import sessionmaker
 
 Base = declarative_base()
 
+class Violation(Base):
+
+    __tablename__ = 'violation'
+    id = Column(Integer, primary_key=True)
+    citation_number = Column(Integer, ForeignKey('citation.citation_number'), nullable=False)
+    violation_number = Column(String(25))
+    violation_description = Column(String(80))
+    warrant_status = Column(String(15))
+    warrant_number = Column(String(20))
+    status = Column(String(50))
+    status_date = Column(String(25))
+    fine_amount = Column(String(15))
+    court_cost = Column(String(15))
+
 class Citation(Base):
 
     __tablename__ = 'citation'
@@ -26,33 +40,31 @@ class Citation(Base):
     court_date = Column(String(20))
     court_location = Column(String(40))
     court_address = Column(String(90))
-
+    
 engine = create_engine('mysql://steveballmer:developers@crimelab.mocrime.thomasruble.com:3306/mocrime')
 Base.metadata.create_all(engine)
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-with open('citations.csv', 'r') as f:
+with open('violations.csv', 'r') as f:
     reader = csv.reader(f)
     columns = next(reader)
+
     while f:
         data = next(reader)
-        cit = Citation()
-        cit.id = data[0]
-        cit.citation_number =  data[1]
-        cit.citation_date =  data[2]
-        cit.first_name =  data[3]
-        cit.last_name =  data[4]
-        cit.date_of_birth =  data[5]
-        cit.defendant_address =  data[6]
-        cit.defendant_city =  data[7]
-        cit.defendant_state =  data[8]
-        cit.drivers_license_number =  data[9]
-        cit.court_date =  data[10]
-        cit.court_location = data[11]
-        cit.court_address =  data[12]
-        session.add(cit)
+        v = Violation()
+        v.id = data[0]
+        v.citation_number =  data[1]
+        v.violation_number = data[2]
+        v.violation_description =  data[3]
+        v.warrant_status =  data[4]
+        v.warrant_number =  data[5]
+        v.status =  data[6]
+        v.status_date =  data[7]
+        v.fine_amount =  data[8]
+        v.court_cost =  data[9]
+        session.add(v)
         session.commit()
 
 
