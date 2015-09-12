@@ -7,7 +7,7 @@ import cgi
 from urlparse import urlparse
 from flask import Flask
 from flask import request, render_template, redirect, url_for
-from telephony import twilio, TwilioRestClient, account_sid, auth_token, client
+from telephony import *
 
 INTERP = os.path.expanduser("/home/thorub2/MOcrime.thomasruble.com/env/bin/python")
 if sys.executable != INTERP: os.execl(INTERP, INTERP, *sys.argv)
@@ -60,9 +60,14 @@ def send_sms():
 @application.route('/twilio/', methods=['POST', 'GET'])
 def receiveTwilio():
      if request.method == 'POST':
-        msg = request.form['Body']
-        message = "Here's your message dickhead: "+ msg
-        client.messages.create(to="+17023284071", from_="+13342474764", body=message)
+        msg = request.values.get('Body')
+        from_number = request.values.get('From', None)
+
+        if from_number in callers:
+            message = callers[from_number] + ", thanks for being part of our experiment.  Your message was:" + msg
+        else:
+            message = "Something went wrong, your number is: " + str(from_number)
+
         resp = twilio.twiml.Response()
-        resp.message("Hello, mobile monkey")
+        resp.message(message)
         return str(resp)
