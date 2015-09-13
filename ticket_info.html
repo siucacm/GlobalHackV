@@ -1,125 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
+
     <meta charset="utf-8">
-    <title>Sticky footer &middot; Twitter Bootstrap</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- CSS -->
-    <link href="../assets/css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
+    <title>One Page Wonder - Start Bootstrap Template</title>
 
-      /* Sticky footer styles
-      -------------------------------------------------- */
+    <!-- Bootstrap Core CSS -->
+    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
 
-      html,
-      body {
-        height: 100%;
-        /* The html and body elements cannot have any padding or margin. */
-      }
+    <!-- Custom CSS -->
+    <link href=".dist/css/one-page-wonder.css" rel="stylesheet">
 
-      /* Wrapper for page content to push down footer */
-      #wrap {
-        min-height: 100%;
-        height: auto !important;
-        height: 100%;
-        /* Negative indent footer by it's height */
-        margin: 0 auto -60px;
-      }
-
-      /* Set the fixed height of the footer here */
-      #push,
-      #footer {
-        height: 60px;
-      }
-      #footer {
-        background-color: #f5f5f5;
-      }
-
-      /* Lastly, apply responsive CSS fixes as necessary */
-      @media (max-width: 767px) {
-        #footer {
-          margin-left: -20px;
-          margin-right: -20px;
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-      }
-
-
-
-      /* Custom page CSS
-      -------------------------------------------------- */
-      /* Not required for template or sticky footer method. */
-
-      .container {
-        width: auto;
-        max-width: 680px;
-      }
-      .container .credit {
-        margin: 20px 0;
-      }
-
-    </style>
-    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-  </head>
+</head>
 
-  <body>
+<body>
 
 
-    <!-- Part 1: Wrap all page content here -->
-    <div id="wrap">
-
-      <!-- Begin page content -->
-      <div class="container">
-        <div class="page-header">
-          <h1>FAQ: Tickets</h1>
+    <!-- Full Width Image Header -->
+    <header class="header-image">
+        <div class="headline">
+            <div class="container">
+                <h1>FAQ</h1>
+                <h2>Information Regarding Tickets</h2>
+            </div>
         </div>
-        <p class="lead">
-        <center>
-            <h3><u>Where Can I Pay For My Ticket?</u></h3>
-          <p></p>
-          <h3></h3>
-        </center>
-        </p>
-        <p></p>
-      </div>
+    </header>
 
-      <div id="push"></div>
+    <!-- Page Content -->
+    <div class="container">
+
+        <hr class="featurette-divider">
+
+        <!-- First Featurette -->
+        <div class="featurette" id="about">
+            <img class="featurette-image img-circle img-responsive pull-right" src="rsz_car-payment-ts.jpg" width="300">
+            <h2 class="featurette-heading">Where Can I Pay For My Ticket?</h2>
+            <p class="lead">To pay for a ticket you can visit the nearest court house.  You also have the option to pay online <a href=" ">here</a>.
+            </p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Second Featurette -->
+        <div class="featurette" id="services">
+            <img class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/500x500">
+            <h2 class="featurette-heading">The Second Heading
+                <span class="text-muted">Is Pretty Cool Too.</span>
+            </h2>
+            <p class="lead">To pay for a ticket you can visit the nearest court house.  You also have the option to pay online <a href=" ">here</a></p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Third Featurette -->
+        <div class="featurette" id="contact">
+            <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
+            <h2 class="featurette-heading">The Third Heading
+                <span class="text-muted">Will Seal the Deal.</span>
+            </h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
     </div>
+    <!-- /.container -->
 
-    <div id="footer">
-      <div class="container">
-        <p class="muted credit">Developers Developers Developers Developers &copy; 2015</p>
-      </div>
-    </div>
+    <!-- jQuery -->
+    <script src="./dist/js/jquery.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="./dist/js/bootstrap.min.js"></script>
 
+</body>
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="./js/jquery.js"></script>
-    <script src="./js/bootstrap-transition.js"></script>
-    <script src="./js/bootstrap-alert.js"></script>
-    <script src="./js/bootstrap-modal.js"></script>
-    <script src="./js/bootstrap-dropdown.js"></script>
-    <script src="./js/bootstrap-scrollspy.js"></script>
-    <script src="./js/bootstrap-tab.js"></script>
-    <script src="./js/bootstrap-tooltip.js"></script>
-    <script src="./js/bootstrap-popover.js"></script>
-    <script src="./js/bootstrap-button.js"></script>
-    <script src="./js/bootstrap-collapse.js"></script>
-    <script src="./js/bootstrap-carousel.js"></script>
-    <script src="./js/bootstrap-typeahead.js"></script>
-
-  </body>
 </html>
