@@ -1,0 +1,16 @@
+
+div.jumbotron_custom{
+	background-image: url("http://hawkebackpacking.com/images/pictures/north_america/missouri/st_louis/missouri_st_louis_38.jpg");
+	background-size:cover;
+	background-position:center;
+	height: 40%, auto;
+	padding-top: 10%;
+	padding-bottom: 25%;
+}
+/* Color of 
+*/
+h1{
+	color: white;
+	
+}
+
