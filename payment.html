@@ -3,25 +3,88 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<title>Payment Methods</title>
+        <script src="js/creditcard.js"></script>
+        <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+        <style type="text/css">
+          body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #C7C7C7;
+            vertical-align: center;
+          }
+
+          .form-signin {
+            max-width: 300px;
+            padding: 19px 29px 29px;
+            margin: 0 auto 20px;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            -webkit-border-radius: 5px;
+               -moz-border-radius: 5px;
+                    border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+               -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          }
+          .form-signin .form-signin-heading,
+          .form-signin .checkbox {
+            margin-bottom: 10px;
+          }
+          .form-signin input[type="text"],
+          .form-signin input[type="text"] {
+            font-size: 16px;
+            height: auto;
+            text-align: center;
+            margin-bottom: 2px;
+            padding: 7px 9px;
+          }
+    </style>
+    <link href="./assets/css/bootstrap-responsive.css" rel="stylesheet">
 	</head>
 	<body>
+        <div class="container">
 		<h1>Pay By Card</h1>
 		<form>
 			<fieldset>
-			<legend>Credit Card Information</legend>
-			Card Type:
-			<label for = "visa">Visa</label>
-			<input type = "radio" name = "CreditCardType" id = "visa"                        value= "v">
-			<label for = "masterCard">Master Card</label>
-			<input type = "radio" name = "CreditCardType" id = "masterCard">                       card" value = "m">
-            <br/>
-			Credit Card Number:
-                <input type = "text" size ="50" onchange="testCreditCard()">
-            Expiration Date(mm/dd/yyyy):<input type = "text" size = "10">
-            Security Code:<input type = "password" size = "5">
-            <br/>
-            <input type = "submit" value = "submit">
+                <legend>Credit Card Information</legend>
+                Card Type:
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default" name = "CreditCardType" value= "0">Visa</button>
+                    <button type="button" class="btn btn-default" name = "CreditCardType" value= "1">MasterCard</button>
+                </div>
+                
+                <br/>
+                Credit Card Number:
+                <input type="text" class="input-block-level" name="ccNum" id="CardNumber" placeholder="XXXX-XXXX-XXXX-XXXX" onchange="testCreditCard()">
+                <br/>
+                Expiration Date:
+                <input type="text" class="input-block-level" name="expDate" id="expDateError" placeholder="MM/DD/YYYY" size = "10" onchange="testExpDate()">
+                
+                Security Code:
+                <input type="text" class="input-block-level" name="secCode" id="secCodeError" size = "5" onchange="testSecCode()">
+                <br/>
+                <button type = "button" value = "submit" onclick="testCreditCard();">Submit</button>
             </fieldset>
         </form>
-	</body>
+        
+        <!-- Le javascript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src=".js/transition.js"></script>
+        <script src="./js/alert.js"></script>
+        <script src="./js/modal.js"></script>
+        <script src="./js/dropdown.js"></script>
+        <script src="./js/scrollspy.js"></script>
+        <script src="./js/tab.js"></script>
+        <script src="./js/tooltip.js"></script>
+        <script src="./js/popover.js"></script>
+        <script src="./js/button.js"></script>
+        <script src="./js/collapse.js"></script>
+        <script src="./js/carousel.js"></script>
+        <script src="./js/typeahead.js"></script>
+        <script src="./js/empty.js"></script>
+        <script src="./dist/js/bootstrap.min.js"></script>
+        </div>
+    </body>
 </html>
