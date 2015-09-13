@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Payment Methods</title>
+	</head>
+	<body>
+		<h1>Pay By Card</h1>
+		<form>
+			<fieldset>
+			<legend>Credit Card Information</legend>
+			Card Type:
+			<label for = "visa">Visa</label>
+			<input type = "radio" name = "CreditCardType" id = "visa"                        value= "v">
+			<label for = "master card">Master Card</label>
+			<input type = "radio" name = "CreditCardType" id = "master                       card" value = "m">
+            <br/>
+			Credit Card Number:
+                <input type = "text" size ="50" onchange="testCreditCard()">
+            Expiration Date(mm/dd/yyyy):<input type = "text" size = "10">
+            Security Code:<input type = "password" size = "5">
+            <br/>
+            <input type = "submit" value = "submit">
+        </form>
+	</body>
+</html>
