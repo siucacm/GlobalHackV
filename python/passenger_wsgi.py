@@ -1,6 +1,6 @@
 import sys, os
 
-from database_setup import Base, Criminal, Citation
+from database_setup import Base, Criminal, Citation, Violation
 from sqlalchemy import create_engine, func, funcfilter, or_
 from sqlalchemy.orm import sessionmaker
 import cgi
@@ -77,7 +77,13 @@ def isLicense(s):
     return any(char.isdigit() for char in s)
 
 def parseLicense(lic):
-    return "It's a license"
+    lic.lower()
+    q = session.query(Citation).filter((Citation.drivers_license_number.like(lic)))
+    entries = q.all()
+    if not entries:
+        return "You are clean"
+    else:
+        return "You've got a record"
 
 def parseName(name):
     m = name.split()
@@ -86,7 +92,9 @@ def parseName(name):
     else:
         q = session.query(Citation).filter((Citation.last_name.like("%%%s%%" % (m[len(m)-1]))) & Citation.first_name.like("%%%s%%" % (m[0])))
         entries = q.all()
-        if len(entries) > 1:
+        if not entries:
+            return "You're clean"
+        elif len(entries) > 1:
             lic = entries[0].drivers_license_number
             if lic:
                 for i in range(len(entries[1:])):
@@ -97,15 +105,18 @@ def parseName(name):
                 for i in range(len(entries[1:])):
                     if dob != entries[i].date_of_birth:
                         return duplicateName(entries[0].id)
-
         return "You're a criminal!"
+
 
 
 def duplicateName(id):
     return "Duplicate name"
 
 def badMessage():
-    return "Potty mouth"
+    return "usage: <first_name last_name> || <license_number>"
+
+def getRecord(cit):
+    q = session.query(Violation).filter_by()
 
 #m = sys.argv[1]
 #print m
