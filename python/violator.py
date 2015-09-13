@@ -40,7 +40,7 @@ class Citation(Base):
     court_date = Column(String(20))
     court_location = Column(String(40))
     court_address = Column(String(90))
-    
+
 engine = create_engine('mysql://steveballmer:developers@crimelab.mocrime.thomasruble.com:3306/mocrime')
 Base.metadata.create_all(engine)
 

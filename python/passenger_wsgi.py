@@ -1,7 +1,7 @@
 import sys, os
 
 from database_setup import Base, Criminal, Citation
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, func, funcfilter, or_
 from sqlalchemy.orm import sessionmaker
 import cgi
 from urlparse import urlparse
@@ -62,12 +62,51 @@ def receiveTwilio():
      if request.method == 'POST':
         msg = request.values.get('Body')
         from_number = request.values.get('From', None)
-
-        if from_number in callers:
-            message = callers[from_number] + ", thanks for being part of our experiment.  Your message was:" + msg
-        else:
-            message = "Something went wrong, your number is: " + str(from_number)
-
         resp = twilio.twiml.Response()
-        resp.message(message)
+        resp.message(parseText(msg))
         return str(resp)
+
+
+def parseText(msg):
+    if isLicense(msg):
+        return parseLicense(msg)
+    msg.lower()
+    return parseName(msg)
+
+def isLicense(s):
+    return any(char.isdigit() for char in s)
+
+def parseLicense(lic):
+    return "It's a license"
+
+def parseName(name):
+    m = name.split()
+    if len(m) < 2:
+        return badMessage()
+    else:
+        q = session.query(Citation).filter((Citation.last_name.like("%%%s%%" % (m[len(m)-1]))) & Citation.first_name.like("%%%s%%" % (m[0])))
+        entries = q.all()
+        if len(entries) > 1:
+            lic = entries[0].drivers_license_number
+            if lic:
+                for i in range(len(entries[1:])):
+                    if lic and lic != entries[i].drivers_license_number:
+                        return duplicateName(entries[0].id)
+            else:
+                dob = entries[0].date_of_birth
+                for i in range(len(entries[1:])):
+                    if dob != entries[i].date_of_birth:
+                        return duplicateName(entries[0].id)
+
+        return "You're a criminal!"
+
+
+def duplicateName(id):
+    return "Duplicate name"
+
+def badMessage():
+    return "Potty mouth"
+
+#m = sys.argv[1]
+#print m
+#parseText(m)

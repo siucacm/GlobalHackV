@@ -23,6 +23,16 @@ class Criminal(Base):
     id = Column(Integer, primary_key=True)
     infraction = Column(String(90))
 
+class User(Base):
+
+    __tablename__ = 'user'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(90), nullable=False)
+    birthdate = Column(DateTime(timezone=False))
+    license = Column(String(20))
+    address = Column(String(90))
+
+
 class Violation(Base):
 
     __tablename__ = 'violation'
